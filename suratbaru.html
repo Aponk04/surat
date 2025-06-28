@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Persetujuan Digital</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .document-container {
+            background-color: #ffffff;
+            max-width: 816px; 
+            min-height: 1318px;
+            padding: 120px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* --- KODE BARU UNTUK HEADER (LOGO + JUDUL) --- */
+        .header-container {
+            display: flex; /* Membuat item di dalamnya (logo & judul) menjadi sejajar */
+            align-items: center; /* Menyelaraskan logo & judul secara vertikal di tengah */
+            justify-content: center; /* Memposisikan grup logo & judul di tengah halaman */
+            margin-bottom: 40px; /* Memberi jarak bawah dari header ke paragraf */
+        }
+
+        .header-container img {
+            max-width: 100px; /* Ukuran logo bisa disesuaikan */
+            height: auto;
+            margin-right: 20px; /* Memberi jarak antara logo dan judul */
+        }
+
+        .header-container h1 {
+            font-size: 1.5em;
+            text-decoration: underline;
+            margin: 0; /* Menghapus margin default dari h1 agar penataan flexbox lebih akurat */
+        }
+        /* --- AKHIR KODE BARU --- */
+
+        /* Kode CSS lama untuk h1 dan .logo-container sudah tidak diperlukan dan bisa dihapus/diabaikan */
+
+        p {
+            text-align: justify;
+            margin-bottom: 1em;
+        }
+        .user-data {
+            margin-bottom: 1em;
+        }
+        .user-data div {
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+        }
+        .user-data label {
+            font-weight: bold;
+            flex-basis: 150px;
+        }
+        .user-data input {
+            flex-grow: 1;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 1em;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 5px;
+        }
+        .user-data input:focus {
+            outline: none;
+            border-bottom: 1px solid #000;
+        }
+
+        .signature-area-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 50px;
+        }
+        
+        .signature-box {
+            text-align: center;
+        }
+        .signature-pad-container {
+            border: 2px dashed #ccc;
+            width: 300px;
+            height: 150px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            cursor: crosshair;
+        }
+        #signature-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        #signature-name-placeholder {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        li{
+            text-align:justify;
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        #save-btn, #clear-btn {
+            color: white;
+        }
+        #save-btn { background-color: #28a745; }
+        #clear-btn { background-color: #dc3545; }
+
+        ol{ background-color:;
+            padding:
+            text-align 5cm }
+    
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="document-container">
+        <div class="content-wrapper">
+            
+            <div class="header-container">
+                <img src="https://github.com/Aponk04/logilivecare/blob/main/LOGO%203.png?raw=true" alt="Logo Logilivecare">
+                <h1>SURAT PERSETUJUAN</h1>
+            </div>
+            <p>
+                Saya yang bertanda tangan di bawah ini:
+            </p>
+            <div class="user-data">
+                <div><label for="nama">Nama:</label><input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda"></div>
+                <div><label for="alamat">Alamat:</label><input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap Anda"></div>
+                <div><label for="nik">Nomor KTP:</label><input type="text" id="nik" name="nik" placeholder="Masukkan Nomor KTP Anda"></div>
+            </div>
+            <p>
+                Dengan ini menyatakan bahwa saya telah membaca, memahami, dan menyetujui sepenuhnya semua syarat dan ketentuan yang tercantum dalam Dokumen ini.
+                <ol>
+                    <li>Menerima penjelasan yang jelas dan memahami sepenuhnya mengenai jenis layanan home care yang akan diterima, tujuan layanan, prosedur pelaksanaan, potensi risiko, komplikasi, serta perkiraan hasil dari layanan tersebut.</li>
+                    <li>Diberikan kesempatan untuk bertanya dan semua pertanyaan saya telah dijawab oleh pihak Life Care.</li>
+                    <li>Memahami bahwa layanan akan diberikan oleh tenaga kesehatan yang profesional dan kompeten dari LIfe Care</li>
+                    <li>Memahami bahwa saya memiliki hak untuk menolak atau menghentikan layanan kapan saja setelah memberikan pemberitahuan yang cukup kepada Life Care.</li>
+                    <li>Memahami kewajiban saya sebagai pasien/penerima layanan sebagaimana tercantum dalam [dokumen Hak dan Kewajiban Pasien.</li>
+                    <li>Memberikan persetujuan penuh kepada Life Care untuk menyediakan layanan home care kesehatan kepada pasien yang disebutkan di atas sesuai dengan informasi yang telah dijelaskan.</li>
+                </ol>
+            </p>
+            <p>
+                Persetujuan ini saya berikan dalam keadaan sadar, sehat jasmani dan rohani, serta tanpa ada paksaan dari pihak manapun.
+            </p>
+            <p>
+                Demikian surat persetujuan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
+            </p>
+        </div>
+
+        <div class="signature-area-wrapper">
+            <div class="signature-section">
+                <div class="signature-box">
+                    <p id="document-date">Makassar, 28 Juni 2025</p>
+                    <p>Yang Memberi Persetujuan,</p>
+                    <div class="signature-pad-container">
+                        <canvas id="signature-canvas"></canvas>
+                    </div>
+                    <p id="signature-name-placeholder">(..............................)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="clear-btn">Hapus Tanda Tangan</button>
+            <button id="save-btn">Simpan Persetujuan & Unduh PDF</button>
+        </div>
+    </div>
+
+    <script>
+        // Sisa kode JavaScript Anda tetap sama persis
+        const { jsPDF } = window.jspdf;
+
+        // Deklarasi semua elemen yang dibutuhkan
+        const canvas = document.getElementById('signature-canvas');
+        const saveButton = document.getElementById('save-btn');
+        const clearButton = document.getElementById('clear-btn');
+        const namaInput = document.getElementById('nama');
+        const alamatInput = document.getElementById('alamat');
+        const nikInput = document.getElementById('nik');
+        const buttonContainer = document.querySelector('.button-container');
+        const signatureNamePlaceholder = document.getElementById('signature-name-placeholder');
+
+        const signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)'
+        });
+        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const today = new Date().toLocaleDateString('id-ID', options);
+            document.getElementById('document-date').textContent = `Makassar, ${today}`;
+        });
+
+        function resizeCanvas() {
+            const ratio =  Math.max(window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
+            signaturePad.clear(); 
+        }
+        
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        clearButton.addEventListener('click', function() {
+            signaturePad.clear();
+        });
+
+        namaInput.addEventListener('input', function() {
+            const name = namaInput.value.trim();
+            if (name) {
+                signatureNamePlaceholder.textContent = `(${name})`;
+            } else {
+                signatureNamePlaceholder.textContent = '(..............................)';
+            }
+        });
+
+        saveButton.addEventListener('click', function() {
+            const nama = namaInput.value.trim();
+            const alamat = alamatInput.value.trim();
+            const nik = nikInput.value.trim();
+
+            if (!nama || !alamat || !nik || signaturePad.isEmpty()) {
+                alert("Mohon lengkapi semua data dan bubuhkan tanda tangan Anda.");
+                return;
+            }
+            
+            alert("Data valid! Mempersiapkan PDF ukuran Legal untuk diunduh.");
+
+            const documentContainer = document.querySelector('.document-container');
+            const originalButtonText = saveButton.innerText;
+
+            buttonContainer.style.display = 'none'; 
+            saveButton.innerText = 'Membuat PDF...';
+            saveButton.disabled = true;
+
+            html2canvas(documentContainer, {
+                    scale: 2,
+                    useCORS: true
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'legal');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(`Surat-Persetujuan-Legal-${nama.replace(/\s/g, '-')}.pdf`);
+
+                alert('Surat formulir persetujuan anda telah berhasil dibuat silakan cek di folder unduhan!');
+
+            }).catch(error => {
+                console.error("Oops, terjadi kesalahan!", error);
+                alert("Gagal membuat PDF. Silakan coba lagi.");
+            }).finally(() => {
+                buttonContainer.style.display = 'block'; 
+                saveButton.innerText = originalButtonText;
+                saveButton.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
